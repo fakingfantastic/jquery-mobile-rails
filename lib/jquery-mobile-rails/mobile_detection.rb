@@ -9,8 +9,16 @@ module JQueryMobile
                           'webos|amoi|novarra|cdm|alcatel|pocket|ipad|iphone|mobileexplorer|' +
                           'mobile'
     
-    def mobile?
-      request.user_agent.to_s.downcase =~ Regexp.new(JQueryMobile::MobileDetection::MOBILE_USER_AGENTS)
+    module InstanceMethods
+      def mobile?
+        request.user_agent.to_s.downcase =~ Regexp.new(JQueryMobile::MobileDetection::MOBILE_USER_AGENTS)
+      end
+    end
+    
+    module ClassMethods
+      def mobile?
+        request.user_agent.to_s.downcase =~ Regexp.new(JQueryMobile::MobileDetection::MOBILE_USER_AGENTS)
+      end
     end
   
   end
